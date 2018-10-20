@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Guacamole</string>
+
+    <string name="lorem_ipsum_date">16 January 2018</string>
+    <string name="lorem_ipsum_comment">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;</string>
+    <string name="lorem_ipsum_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra sapien nec pretium varius. Phasellus ex nunc, posuere quis ligula eleifend, gravida pretium sapien. Aenean ac elit laoreet, efficitur est nec, volutpat ligula. Suspendisse potenti.</string>
+
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--custom-->
+    <color name="colorAvantuPrimary">#fc7a6a</color>
+    <color name="colorAvantuSecondary">#ff1380</color>
+    <color name="colorAvantuDarkGrey">#bdc3c7</color>
+    <color name="colorAvantuGrey">#ecf0f1</color>
+    <color name="colorAvantuWhite">#ffffff</color>
+    <color name="colorAvantuDarkBlue">#353b48</color>
+</resources>
