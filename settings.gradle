@@ -1,1 +1,1 @@
-include ':app', ':Guacamolelibrary'
+include ':app', ':GuacamoleLibrary'

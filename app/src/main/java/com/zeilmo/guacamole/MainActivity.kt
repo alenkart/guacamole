@@ -2,6 +2,7 @@ package com.zeilmo.guacamole
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.zeilmo.guacamolelibrary.adapters.RecyclerViewAdapterPreference
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity(),
         val weeksPref = MultiListPreference("categoryPref")
         weeksPref.title = "Working days"
         weeksPref.alertButton = "Save"
-        categoryPref.selectedItem = 3
         weeksPref.itemList = hashMapOf(
             "Monday" to true,
             "Tuesday" to true,
@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(),
 
         val fromTimePickerPref = TimePickerPreference("timePickerPref")
         fromTimePickerPref.title = "From"
+        fromTimePickerPref.hours =
 
         val toTimePickerPref = TimePickerPreference("timePickerPref")
         toTimePickerPref.title = "To"
