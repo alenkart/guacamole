@@ -1,10 +1,11 @@
 package com.zeilmo.guacamolelibrary.models
 
+import android.graphics.drawable.Drawable
 import com.zeilmo.guacamolelibrary.R
 
 abstract class BasicPreference(val key: String) {
 
-    var icon: Int? = null
+    var icon: Drawable? = null
     var title: String? = null
     var subTitle: String? = null
 

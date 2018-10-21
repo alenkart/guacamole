@@ -1,6 +1,7 @@
 package com.zeilmo.guacamolelibrary.adapters
 
 import android.app.*
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.graphics.drawable.ColorDrawable
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import com.zeilmo.guacamolelibrary.fragments.DatePickerFragment
 import com.zeilmo.guacamolelibrary.fragments.TimePickerFragment
@@ -21,7 +24,6 @@ data class RecyclerViewAdapterPreference(
 ) : RecyclerView.Adapter<RecyclerViewAdapterPreference.ViewHolder>() {
 
     var fragmentManager: FragmentManager? = null
-
     var onDatePickerListener: OnDatePickerListener? = null
     var onTimePickerListener: OnTimePickerListener? = null
     var onBooleanListener: OnBooleanListener? = null
@@ -75,32 +77,8 @@ data class RecyclerViewAdapterPreference(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val simplePreference = preferences[position]
-
-        holder.title.text = preferences[position].title
-        holder.subTitle.text = preferences[position].subTitle
-
-        if (simplePreference.icon == null) {
-            holder.icon.visibility = View.GONE
-        } else {
-            holder.icon.visibility = View.VISIBLE
-        }
-
-        if (simplePreference.title.isNullOrBlank()) {
-            holder.title.visibility = View.GONE
-        } else {
-            holder.title.visibility = View.VISIBLE
-        }
-
-        if (simplePreference.subTitle.isNullOrBlank()) {
-            holder.subTitle.visibility = View.GONE
-        } else {
-            holder.subTitle.visibility = View.VISIBLE
-        }
-
-        holder.updateData(simplePreference)
-
+        val basicPreference = preferences[position]
+        holder.updateData(basicPreference)
     }
 
     override fun getItemCount(): Int = preferences.size
@@ -111,14 +89,36 @@ data class RecyclerViewAdapterPreference(
         val title: TextView = view.findViewById(R.id.simplePreferenceTitle)
         val subTitle: TextView = view.findViewById(R.id.simplePreferenceSubTitle)
 
-        abstract fun updateData(preference: BasicPreference)
+       open fun updateData(basicPreference: BasicPreference) {
+
+            title.text = basicPreference.title
+            subTitle.text = basicPreference.subTitle
+
+            if (basicPreference.icon == null) {
+                icon.visibility = View.GONE
+            } else {
+                icon.setImageDrawable(basicPreference.icon)
+                icon.visibility = View.VISIBLE
+            }
+
+            if (basicPreference.title.isNullOrBlank()) {
+                title.visibility = View.GONE
+            } else {
+                title.visibility = View.VISIBLE
+            }
+
+            if (basicPreference.subTitle.isNullOrBlank()) {
+                subTitle.visibility = View.GONE
+            } else {
+                subTitle.visibility = View.VISIBLE
+            }
+
+        }
 
         fun getCurrentItem(): BasicPreference = preferences[adapterPosition]
     }
 
     inner class TitleViewHolder(view: View) : ViewHolder(view) {
-
-        override fun updateData(preference: BasicPreference) {}
 
         override fun onClick(p0: View?) {}
     }
@@ -160,8 +160,6 @@ data class RecyclerViewAdapterPreference(
         init {
             itemView.setOnClickListener(this)
         }
-
-        override fun updateData(preference: BasicPreference) {}
 
         override fun onClick(view: View?) {
 
@@ -237,10 +235,12 @@ data class RecyclerViewAdapterPreference(
 
         override fun setAlertMessage(alert: AlertDialog.Builder, preference: AlertPreference) {}
 
-        override fun updateData(preference: BasicPreference) {
+        override fun updateData(basicPreference: BasicPreference) {
 
-            if(preference is SingleListPreference) {
-                subTitle.text = getSelectItem(preference)
+            super.updateData(basicPreference)
+
+            if(basicPreference is SingleListPreference) {
+                subTitle.text = getSelectItem(basicPreference)
             }
         }
 
@@ -290,10 +290,12 @@ data class RecyclerViewAdapterPreference(
 
         override fun setAlertMessage(alert: AlertDialog.Builder, preference: AlertPreference) {}
 
-        override fun updateData(preference: BasicPreference) {
+        override fun updateData(basicPreference: BasicPreference) {
 
-            if(preference is MultiListPreference) {
-                subTitle.text = listToString(preference)
+            super.updateData(basicPreference)
+
+            if(basicPreference is MultiListPreference) {
+                subTitle.text = listToString(basicPreference)
             }
 
         }
@@ -327,10 +329,12 @@ data class RecyclerViewAdapterPreference(
 
         }
 
-        override fun updateData(preference: BasicPreference) {
+        override fun updateData(basicPreference: BasicPreference) {
 
-            if (preference is CheckBoxPreference) {
-                checkBox.isChecked = preference.status
+            super.updateData(basicPreference)
+
+            if (basicPreference is CheckBoxPreference) {
+                checkBox.isChecked = basicPreference.status
             }
         }
     }
@@ -362,11 +366,13 @@ data class RecyclerViewAdapterPreference(
 
         }
 
-        override fun updateData(preference: BasicPreference) {
+        override fun updateData(basicPreference: BasicPreference) {
 
-            if (preference is SwitchPreference) {
-                switch.isChecked = preference.status
-                status.text = preference.getStatusString()
+            super.updateData(basicPreference)
+
+            if (basicPreference is SwitchPreference) {
+                switch.isChecked = basicPreference.status
+                status.text = basicPreference.getStatusString()
             }
         }
     }
@@ -400,12 +406,14 @@ data class RecyclerViewAdapterPreference(
                 onTimePickerListener?.onDataChange(preference.key, hours, minutes)
             }
 
-
         }
 
-        override fun updateData(preference: BasicPreference) {
-            if(preference is TimePickerPreference) {
-                val time = "${preference.hours}:${preference.minutes}"
+        override fun updateData(basicPreference: BasicPreference) {
+
+            super.updateData(basicPreference)
+
+            if(basicPreference is TimePickerPreference) {
+                val time = "${basicPreference.hours}:${basicPreference.minutes}"
                 subTitle.text = time
             }
         }
@@ -444,9 +452,12 @@ data class RecyclerViewAdapterPreference(
 
         }
 
-        override fun updateData(preference: BasicPreference) {
-            if(preference is DatePickerPreference) {
-                val date = "${preference.year}/${preference.month}/${preference.day}"
+        override fun updateData(basicPreference: BasicPreference) {
+
+            super.updateData(basicPreference)
+
+            if(basicPreference is DatePickerPreference) {
+                val date = "${basicPreference.year}/${basicPreference.month}/${basicPreference.day}"
                 subTitle.text = date
             }
         }

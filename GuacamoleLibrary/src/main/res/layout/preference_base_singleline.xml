@@ -39,12 +39,12 @@
 
 
     <ImageView
-        android:id="@+id/simplePreferenceIcon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+            android:id="@+id/simplePreferenceIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background" app:layout_constraintVertical_bias="0.0"/>
 
 </android.support.constraint.ConstraintLayout>
