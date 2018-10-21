@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity(),
             "Sunday" to true
         )
 
-
         val descriptionPref = DescriptionPreference("descriptionPref")
         descriptionPref.title = "Description"
         descriptionPref.subTitle = description
@@ -68,7 +67,6 @@ class MainActivity : AppCompatActivity(),
 
         val fromTimePickerPref = TimePickerPreference("timePickerPref")
         fromTimePickerPref.title = "From"
-        fromTimePickerPref.hours =
 
         val toTimePickerPref = TimePickerPreference("timePickerPref")
         toTimePickerPref.title = "To"
