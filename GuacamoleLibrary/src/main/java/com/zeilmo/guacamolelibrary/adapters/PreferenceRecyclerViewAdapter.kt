@@ -123,6 +123,9 @@ data class PreferenceRecyclerViewAdapter(
 
         open fun updateData(basicPreference: BasicPreference) {
 
+            title.text = basicPreference.title
+            subTitle.text = basicPreference.subTitle
+
             if (basicPreference.leftIcon == null) {
                 leftIcon.visibility = View.GONE
             } else {
@@ -142,19 +145,15 @@ data class PreferenceRecyclerViewAdapter(
                 view.setBackgroundColor(color)
             }
 
-            if (basicPreference.title.isNullOrBlank()) {
-                title.visibility = View.GONE
-            } else {
-                title.text = basicPreference.title
-                title.visibility = View.VISIBLE
-            }
+            title.visibility = if (basicPreference.title.isNullOrBlank())
+                 View.GONE
+             else
+                 View.VISIBLE
 
-            if (basicPreference.subTitle.isNullOrBlank()) {
-                subTitle.visibility = View.GONE
-            } else {
-                subTitle.text = basicPreference.subTitle
-                subTitle.visibility = View.VISIBLE
-            }
+            subTitle.visibility = if (basicPreference.subTitle.isNullOrBlank())
+                 View.GONE
+            else
+                 View.VISIBLE
         }
 
         fun getCurrentItem(): BasicPreference = preferences[adapterPosition]
@@ -216,7 +215,7 @@ data class PreferenceRecyclerViewAdapter(
                 val layout = FrameLayout(itemView.context)
                 val alert = AlertDialog.Builder(itemView.context)
 
-                editText.setText(subTitle.text)
+                editText.setText(preference.subTitle)
                 editText.inputType = preference.inputType
 
                 layout.addView(editText)
@@ -504,7 +503,6 @@ data class PreferenceRecyclerViewAdapter(
             }
         }
     }
-
 
     inner class DatePickerViewHolder(view: View) : ViewHolder(view), DatePickerDialog.OnDateSetListener {
 

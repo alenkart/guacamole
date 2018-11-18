@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity(),
         titlePref.isClickable = false
         titlePref.backgroundColor = Color.parseColor("#dfe6e9")
 
+        val titlePref2 = TextPreference("titlePref")
+        titlePref2.title = "Title"
+
         val descriptionPref = DescriptionPreference("descriptionPref")
         descriptionPref.title = "Description"
         descriptionPref.subTitle = description
@@ -109,10 +112,11 @@ class MainActivity : AppCompatActivity(),
         val titleBoolean = TitlePreference("title")
         titleBoolean.title = "Boolean"
         titleBoolean.backgroundColor = Color.parseColor("#dddddd")
-        
+
         val prefs = mutableListOf(
             titleText,
             titlePref,
+            titlePref2,
             descriptionPref,
             titleList,
             categoryPref,
