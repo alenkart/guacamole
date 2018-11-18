@@ -7,7 +7,7 @@ abstract class BasicPreference(val key: String) {
 
     var leftIcon: Drawable? = null
     var rightIcon: Drawable? = null
-    var backGroundColor: Int? = null
+    var backgroundColor: Int? = null
 
     var title: String? = null
     var subTitle: String? = null

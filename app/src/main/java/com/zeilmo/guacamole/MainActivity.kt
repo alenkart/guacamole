@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.TextView
 import android.widget.Toast
 import com.zeilmo.guacamolelibrary.adapters.PreferenceRecyclerViewAdapter
 import com.zeilmo.guacamolelibrary.models.*
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(),
         titlePref.title = "Title"
         titlePref.subTitle = comment
         titlePref.isClickable = false
-        titlePref.backGroundColor = Color.parseColor("#dfe6e9")
+        titlePref.backgroundColor = Color.parseColor("#dfe6e9")
 
         val descriptionPref = DescriptionPreference("descriptionPref")
         descriptionPref.title = "Description"
@@ -99,16 +100,16 @@ class MainActivity : AppCompatActivity(),
 
         val titleList = TitlePreference("title")
         titleList.title = "List"
-        titleList.backGroundColor = Color.parseColor("#f1f1f1")
+        titleList.backgroundColor = Color.parseColor("#f1f1f1")
 
         val titleDate = TitlePreference("title")
         titleDate.title = "Date"
-        titleDate.backGroundColor = Color.parseColor("#f1f1f1")
+        titleDate.backgroundColor = Color.parseColor("#f1f1f1")
 
         val titleBoolean = TitlePreference("title")
         titleBoolean.title = "Boolean"
-        titleBoolean.backGroundColor = Color.parseColor("#dddddd")
-
+        titleBoolean.backgroundColor = Color.parseColor("#dddddd")
+        
         val prefs = mutableListOf(
             titleText,
             titlePref,

@@ -7,7 +7,6 @@ import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -138,8 +137,8 @@ data class PreferenceRecyclerViewAdapter(
                 rightIcon.visibility = View.VISIBLE
             }
 
-            if(basicPreference.backGroundColor != null ) {
-                val color = basicPreference.backGroundColor!!
+            if(basicPreference.backgroundColor != null ) {
+                val color = basicPreference.backgroundColor!!
                 view.setBackgroundColor(color)
             }
 
