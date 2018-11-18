@@ -1,26 +1,26 @@
 package com.zeilmo.guacamolelibrary.models
 
 import com.zeilmo.guacamolelibrary.R
+import java.util.*
 
 class TimePickerPreference(key: String): BasicPreference(key) {
 
-    var hours: Int = 0
-    var minutes: Int = 0
+    var calendar: Calendar? = Calendar.getInstance()
 
     init {
-        subTitle = "00:00"
+        calendar?.clear()
+        subTitle = "hh:mm"
     }
 
     override fun getLayoutId(): Int = R.layout.cardview_preference_timepicker
 }
 
-class DatePickerPreference(key: String): BasicPreference(key) {
+class DatePickerPreference(key: String): BasicPreference(key){
 
-    var year: Int = 0
-    var month: Int = 0
-    var day: Int = 0
+    var calendar: Calendar? = Calendar.getInstance()
 
     init {
+        calendar?.clear()
         subTitle = "YYYY/MM/dd"
     }
 

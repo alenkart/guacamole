@@ -2,15 +2,16 @@ package com.zeilmo.guacamole
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
-import com.zeilmo.guacamolelibrary.adapters.RecyclerViewAdapterPreference
+import com.zeilmo.guacamolelibrary.adapters.PreferenceRecyclerViewAdapter
 import com.zeilmo.guacamolelibrary.models.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.HashMap
 
 class MainActivity : AppCompatActivity(),
-    RecyclerViewAdapterPreference.OnTextListener, RecyclerViewAdapterPreference.OnBooleanListener {
+    PreferenceRecyclerViewAdapter.OnTextListener,
+    PreferenceRecyclerViewAdapter.OnBooleanListener,
+    PreferenceRecyclerViewAdapter.OnMultiListListener {
 
     private val prefs = mutableListOf<BasicPreference>()
 
@@ -20,12 +21,16 @@ class MainActivity : AppCompatActivity(),
         setUpPrefs()
     }
 
-    override fun onChangeData(key: String, text: String) {
-        Toast.makeText(this, "$key - $text", Toast.LENGTH_SHORT).show()
+    override fun onChangeData(key: String, list: HashMap<String, Boolean>): HashMap<String, Boolean> {
+        return list
     }
 
-    override fun onDataChange(key: String, value: Boolean) {
-        Toast.makeText(this, " $key- $value", Toast.LENGTH_SHORT).show()
+    override fun onChangeData(key: String, text: String): String {
+        return text
+    }
+
+    override fun onDataChange(key: String, status: Boolean): Boolean {
+        return !status
     }
 
     private fun setUpPrefs() {
@@ -63,7 +68,6 @@ class MainActivity : AppCompatActivity(),
 
         val datePickerPref = DatePickerPreference("datePickerPref")
         datePickerPref.title = "Date"
-        datePickerPref.year = 50
 
         val fromTimePickerPref = TimePickerPreference("timePickerPref")
         fromTimePickerPref.title = "From"
@@ -112,10 +116,9 @@ class MainActivity : AppCompatActivity(),
 
         this.prefs.addAll(prefs)
 
-        val adapter = RecyclerViewAdapterPreference(prefs)
+        val adapter = PreferenceRecyclerViewAdapter(prefs)
         adapter.fragmentManager = fragmentManager
-        adapter.onTextListener = this
-        adapter.onBooleanListener = this
+        adapter.setListener(this)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
