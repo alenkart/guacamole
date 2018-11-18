@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.zeilmo.guacamolelibrary.adapters.PreferenceRecyclerViewAdapter
 import com.zeilmo.guacamolelibrary.models.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onDataChange(key: String, status: Boolean): Boolean {
+        Toast.makeText(this, "$status", Toast.LENGTH_SHORT).show()
         return !status
     }
 
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity(),
         titlePref.title = "Title"
         titlePref.subTitle = comment
         titlePref.isClickable = false
+        titlePref.backGroundColor = Color.parseColor("#dfe6e9")
 
         val descriptionPref = DescriptionPreference("descriptionPref")
         descriptionPref.title = "Description"
