@@ -2,13 +2,13 @@
 
 [![](https://jitpack.io/v/Alenkart/guacamole.svg)](https://jitpack.io/#Alenkart/guacamole)
 
-Guacamole is library to build forms dynamically in android.
+Guacamole is a library to build forms dynamically in android.
 
 ## Components Demo
 
 ![alt text](public/demo.gif)
 
-Each of the components has the following propeties: icon, title and subTitle.
+Each of the components has the following properties: icon, title, and subTitle.
 
 ## Title
 ```kotlin
@@ -40,7 +40,7 @@ descriptionPref.title = "Description"
 descriptionPref.subTitle = "Lorem Ipsum"
 ```
 
-## Single choise list
+## Single choice list
 ```kotlin
 val categoryPref = SingleListPreference("categoryPref")
 categoryPref.itemList = arrayOf("A", "B", "C", "D", "E", "F", "G")
@@ -49,7 +49,7 @@ categoryPref.alertButton = "Save"
 categoryPref.selectedItem = 3
 ```
 
-## Multi choise list
+## Multi choice list
 ```kotlin
 val weeksPref = MultiListPreference("categoryPref")
 weeksPref.title = "Working days"
