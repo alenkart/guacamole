@@ -14,43 +14,49 @@
         android:padding="8dp">
 
         <include
-            layout="@layout/preference_base"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                layout="@layout/preference_base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/simplePreferenceRightIcon" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp">
 
             <Switch
-                android:id="@+id/simplePreferenceSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/simplePreferenceStatus"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:layout_editor_absoluteX="344dp" />
+                    android:id="@+id/simplePreferenceSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/simplePreferenceStatus"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:layout_editor_absoluteX="344dp"/>
 
             <TextView
-                android:id="@+id/simplePreferenceStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="352dp"
-                tools:layout_editor_absoluteY="121dp" />
+                    android:id="@+id/simplePreferenceStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    tools:layout_editor_absoluteX="352dp"
+                    tools:layout_editor_absoluteY="121dp"/>
 
         </LinearLayout>
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/simplePreferenceRightIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 

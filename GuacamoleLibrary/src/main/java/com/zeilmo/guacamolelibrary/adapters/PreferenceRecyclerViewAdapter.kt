@@ -116,31 +116,38 @@ data class PreferenceRecyclerViewAdapter(
 
     abstract inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        val icon: ImageView = view.findViewById(R.id.simplePreferenceIcon)
+        val leftIcon: ImageView = view.findViewById(R.id.simplePreferenceLeftIcon)
+        val rightIcon: ImageView = view.findViewById(R.id.simplePreferenceRightIcon)
         val title: TextView = view.findViewById(R.id.simplePreferenceTitle)
         val subTitle: TextView = view.findViewById(R.id.simplePreferenceSubTitle)
 
         open fun updateData(basicPreference: BasicPreference) {
 
-            title.text = basicPreference.title
-            subTitle.text = basicPreference.subTitle
-
-            if (basicPreference.icon == null) {
-                icon.visibility = View.GONE
+            if (basicPreference.leftIcon == null) {
+                leftIcon.visibility = View.GONE
             } else {
-                icon.setImageDrawable(basicPreference.icon)
-                icon.visibility = View.VISIBLE
+                leftIcon.setImageDrawable(basicPreference.leftIcon)
+                leftIcon.visibility = View.VISIBLE
+            }
+
+            if (basicPreference.rightIcon == null) {
+                rightIcon.visibility = View.GONE
+            } else {
+                rightIcon.setImageDrawable(basicPreference.rightIcon)
+                rightIcon.visibility = View.VISIBLE
             }
 
             if (basicPreference.title.isNullOrBlank()) {
                 title.visibility = View.GONE
             } else {
+                title.text = basicPreference.title
                 title.visibility = View.VISIBLE
             }
 
             if (basicPreference.subTitle.isNullOrBlank()) {
                 subTitle.visibility = View.GONE
             } else {
+                subTitle.text = basicPreference.subTitle
                 subTitle.visibility = View.VISIBLE
             }
         }

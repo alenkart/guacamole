@@ -16,14 +16,14 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/simplePreferenceIcon"
+        app:layout_constraintStart_toEndOf="@+id/simplePreferenceLeftIcon"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/simplePreferenceTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/lorem_ipsum"
             android:textColor="@color/colorAvantuDarkBlue"
             />
 
@@ -36,9 +36,9 @@
 
 
     <ImageView
-            android:id="@+id/simplePreferenceIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:id="@+id/simplePreferenceLeftIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" tools:srcCompat="@tools:sample/avatars"

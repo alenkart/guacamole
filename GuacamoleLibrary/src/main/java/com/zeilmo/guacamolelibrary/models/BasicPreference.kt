@@ -5,7 +5,9 @@ import com.zeilmo.guacamolelibrary.R
 
 abstract class BasicPreference(val key: String) {
 
-    var icon: Drawable? = null
+    var leftIcon: Drawable? = null
+    var rightIcon: Drawable? = null
+
     var title: String? = null
     var subTitle: String? = null
 

@@ -2,6 +2,7 @@ package com.zeilmo.guacamole
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import com.zeilmo.guacamolelibrary.adapters.PreferenceRecyclerViewAdapter
 import com.zeilmo.guacamolelibrary.models.*
@@ -43,11 +44,18 @@ class MainActivity : AppCompatActivity(),
         titlePref.subTitle = comment
         titlePref.isClickable = false
 
+        val descriptionPref = DescriptionPreference("descriptionPref")
+        descriptionPref.title = "Description"
+        descriptionPref.subTitle = description
+        descriptionPref.leftIcon = ContextCompat.getDrawable(this, R.drawable.ic_edit_black_24dp)
+        descriptionPref.rightIcon = ContextCompat.getDrawable(this, R.drawable.ic_keyboard_arrow_right_black_24dp)
+
         val categoryPref = SingleListPreference("categoryPref")
         categoryPref.itemList = arrayOf("A", "B", "C", "D", "E", "F", "G")
         categoryPref.title = "Category"
         categoryPref.alertButton = "Save"
         categoryPref.selectedItem = 3
+        categoryPref.leftIcon = ContextCompat.getDrawable(this, R.drawable.ic_edit_black_24dp)
 
         val weeksPref = MultiListPreference("categoryPref")
         weeksPref.title = "Working days"
@@ -62,10 +70,6 @@ class MainActivity : AppCompatActivity(),
             "Saturday" to false,
             "Sunday" to true
         )
-
-        val descriptionPref = DescriptionPreference("descriptionPref")
-        descriptionPref.title = "Description"
-        descriptionPref.subTitle = description
 
         val datePickerPref = DatePickerPreference("datePickerPref")
         datePickerPref.title = "Date"
@@ -97,7 +101,6 @@ class MainActivity : AppCompatActivity(),
 
         val titleBoolean = TitlePreference("title")
         titleBoolean.title = "Boolean"
-
 
         val prefs = mutableListOf(
             titleText,
