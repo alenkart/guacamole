@@ -7,6 +7,7 @@ abstract class BasicPreference(val key: String) {
 
     var leftIcon: Drawable? = null
     var rightIcon: Drawable? = null
+    var backGroundColor: Int? = null
 
     var title: String? = null
     var subTitle: String? = null
@@ -14,7 +15,6 @@ abstract class BasicPreference(val key: String) {
     var isClickable = true
 
     abstract fun getLayoutId(): Int
-
 }
 
 class TitlePreference(key: String): AlertPreference(key)  {

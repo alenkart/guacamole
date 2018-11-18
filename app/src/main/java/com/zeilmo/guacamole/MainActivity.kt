@@ -1,5 +1,6 @@
 package com.zeilmo.guacamole
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -95,12 +96,15 @@ class MainActivity : AppCompatActivity(),
 
         val titleList = TitlePreference("title")
         titleList.title = "List"
+        titleList.backGroundColor = Color.parseColor("#f1f1f1")
 
         val titleDate = TitlePreference("title")
         titleDate.title = "Date"
+        titleDate.backGroundColor = Color.parseColor("#f1f1f1")
 
         val titleBoolean = TitlePreference("title")
         titleBoolean.title = "Boolean"
+        titleBoolean.backGroundColor = Color.parseColor("#dddddd")
 
         val prefs = mutableListOf(
             titleText,

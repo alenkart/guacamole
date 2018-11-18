@@ -7,6 +7,7 @@ import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -114,7 +115,7 @@ data class PreferenceRecyclerViewAdapter(
 
     override fun getItemCount(): Int = preferences.size
 
-    abstract inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    abstract inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val leftIcon: ImageView = view.findViewById(R.id.simplePreferenceLeftIcon)
         val rightIcon: ImageView = view.findViewById(R.id.simplePreferenceRightIcon)
@@ -135,6 +136,11 @@ data class PreferenceRecyclerViewAdapter(
             } else {
                 rightIcon.setImageDrawable(basicPreference.rightIcon)
                 rightIcon.visibility = View.VISIBLE
+            }
+
+            if(basicPreference.backGroundColor != null ) {
+                val color = basicPreference.backGroundColor!!
+                view.setBackgroundColor(color)
             }
 
             if (basicPreference.title.isNullOrBlank()) {
