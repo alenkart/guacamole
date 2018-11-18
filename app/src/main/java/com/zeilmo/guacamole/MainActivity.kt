@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(),
         val titlePref = TextPreference("titlePref")
         titlePref.title = "Title"
         titlePref.subTitle = comment
+        titlePref.isClickable = false
 
         val categoryPref = SingleListPreference("categoryPref")
         categoryPref.itemList = arrayOf("A", "B", "C", "D", "E", "F", "G")
@@ -123,4 +124,5 @@ class MainActivity : AppCompatActivity(),
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
+
 }

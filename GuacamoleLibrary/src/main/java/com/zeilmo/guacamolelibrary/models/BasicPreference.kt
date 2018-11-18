@@ -9,6 +9,8 @@ abstract class BasicPreference(val key: String) {
     var title: String? = null
     var subTitle: String? = null
 
+    var isClickable = true
+
     abstract fun getLayoutId(): Int
 
 }

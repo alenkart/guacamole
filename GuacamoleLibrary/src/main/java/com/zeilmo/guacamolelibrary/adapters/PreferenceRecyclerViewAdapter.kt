@@ -57,27 +57,27 @@ data class PreferenceRecyclerViewAdapter(
 
     fun setListener(listener: Any) {
 
-        if(listener is OnDatePickerListener) {
+        if (listener is OnDatePickerListener) {
             this.onDatePickerListener = listener
         }
 
-        if(listener is OnTimePickerListener) {
+        if (listener is OnTimePickerListener) {
             this.onTimePickerListener = listener
         }
 
-        if(listener is OnBooleanListener) {
+        if (listener is OnBooleanListener) {
             this.onBooleanListener = listener
         }
 
-        if(listener is OnSingleListListener) {
+        if (listener is OnSingleListListener) {
             this.onSingleListListener = listener
         }
 
-        if(listener is OnMultiListListener) {
+        if (listener is OnMultiListListener) {
             this.onMultiListListener = listener
         }
 
-        if(listener is OnTextListener) {
+        if (listener is OnTextListener) {
             this.onTextListener = listener
         }
 
@@ -99,10 +99,12 @@ data class PreferenceRecyclerViewAdapter(
             R.layout.cardview_preference_checbox -> CheckBoxViewHolder(view)
             R.layout.cardview_preference_single_list -> SingleItemListViewHolder(view)
             R.layout.cardview_preference_multi_list -> MultiItemListViewHolder(view)
-            R.layout.cardview_preference_text, R.layout.cardview_preference_description -> TextViewHolder(view)
+
+            R.layout.cardview_preference_text,
+            R.layout.cardview_preference_description -> TextViewHolder(view)
+
             else -> TitleViewHolder(view)
         }
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -169,8 +171,7 @@ data class PreferenceRecyclerViewAdapter(
             alert.setMessage(preference.alertMessage)
         }
 
-        open fun setAlertButton(
-            alert: AlertDialog.Builder,
+        open fun setAlertButton(alert: AlertDialog.Builder,
             preference: AlertPreference,
             listener: DialogInterface.OnClickListener?
         ) {
@@ -195,6 +196,8 @@ data class PreferenceRecyclerViewAdapter(
 
             val preference = getCurrentItem() as AlertPreference
 
+            if(!preference.isClickable) return
+
             if (preference is TextPreference) {
 
                 val editText = EditText(itemView.context)
@@ -211,7 +214,7 @@ data class PreferenceRecyclerViewAdapter(
                 setAlertMessage(alert, preference)
                 setAlertButton(alert, preference, DialogInterface.OnClickListener { _, _ ->
 
-                    val result = if(onTextListener == null) {
+                    val result = if (onTextListener == null) {
                         editText.text.toString()
                     } else {
                         onTextListener?.onChangeData(preference.key, editText.text.toString())
@@ -240,6 +243,8 @@ data class PreferenceRecyclerViewAdapter(
 
             val preference = getCurrentItem()
 
+            if(!preference.isClickable) return
+
             if (preference is SingleListPreference) {
 
                 val alert = AlertDialog.Builder(itemView.context)
@@ -250,12 +255,12 @@ data class PreferenceRecyclerViewAdapter(
 
                 alert.setSingleChoiceItems(preference.itemList, preference.selectedItem) { dialog, selectedItem ->
 
-                    val result = if(onSingleListListener == null)
+                    val result = if (onSingleListListener == null)
                         selectedItem
                     else
                         onSingleListListener?.onChangeData(preference.key, selectedItem)
 
-                    result?.let{
+                    result?.let {
                         preference.selectedItem = result
                         notifyItemChanged(adapterPosition, preference)
                     }
@@ -296,6 +301,8 @@ data class PreferenceRecyclerViewAdapter(
 
             val preference = getCurrentItem()
 
+            if(!preference.isClickable) return
+
             if (preference is MultiListPreference) {
 
                 val alert = AlertDialog.Builder(itemView.context)
@@ -313,7 +320,7 @@ data class PreferenceRecyclerViewAdapter(
 
                 setAlertButton(alert, preference, DialogInterface.OnClickListener { dialog, _ ->
 
-                    val result = if(onMultiListListener == null)
+                    val result = if (onMultiListListener == null)
                         preference.itemList
                     else onMultiListListener?.onChangeData(preference.key, preference.itemList)
 
@@ -363,9 +370,11 @@ data class PreferenceRecyclerViewAdapter(
 
             val preference = getCurrentItem()
 
+            if(!preference.isClickable) return
+
             if (preference is CheckBoxPreference) {
 
-                val result= if(onBooleanListener == null)
+                val result = if (onBooleanListener == null)
                     !checkBox.isChecked
                 else
                     onBooleanListener?.onDataChange(preference.key, checkBox.isChecked)
@@ -401,9 +410,11 @@ data class PreferenceRecyclerViewAdapter(
 
             val preference = getCurrentItem()
 
+            if(!preference.isClickable) return
+
             if (preference is SwitchPreference) {
 
-                val result = if(onBooleanListener == null)
+                val result = if (onBooleanListener == null)
                     !switch.isChecked
                 else
                     onBooleanListener?.onDataChange(preference.key, switch.isChecked)
@@ -434,9 +445,13 @@ data class PreferenceRecyclerViewAdapter(
 
         override fun onClick(p0: View?) {
 
+            val preference = getCurrentItem()
+
+            if(!preference.isClickable) return
+
             val timePicker = TimePickerFragment()
             timePicker.listener = this
-            timePicker.show(fragmentManager, "timePicker")
+            timePicker.show(fragmentManager, preference.key)
         }
 
         override fun onTimeSet(p0: TimePicker?, hours: Int, minutes: Int) {
@@ -445,7 +460,7 @@ data class PreferenceRecyclerViewAdapter(
 
             if (preference is TimePickerPreference) {
 
-                val result = if(onTimePickerListener == null) {
+                val result = if (onTimePickerListener == null) {
                     val calendar = Calendar.getInstance()
                     calendar.clear()
                     calendar.set(Calendar.HOUR_OF_DAY, hours)
@@ -486,9 +501,14 @@ data class PreferenceRecyclerViewAdapter(
         }
 
         override fun onClick(p0: View?) {
+
+            val preference = getCurrentItem()
+
+            if(!preference.isClickable) return
+
             val datePicker = DatePickerFragment()
             datePicker.listener = this
-            datePicker.show(fragmentManager, "datePicker")
+            datePicker.show(fragmentManager, preference.key)
         }
 
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
@@ -497,7 +517,7 @@ data class PreferenceRecyclerViewAdapter(
 
             if (preference is DatePickerPreference) {
 
-                val result = if(onDatePickerListener == null) {
+                val result = if (onDatePickerListener == null) {
                     val calendar = Calendar.getInstance()
                     calendar.clear()
                     calendar.set(Calendar.YEAR, year)
