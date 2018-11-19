@@ -3,7 +3,7 @@ package com.zeilmo.guacamolelibrary.models
 import android.graphics.drawable.Drawable
 import com.zeilmo.guacamolelibrary.R
 
-abstract class BasicPreference(val key: String) {
+open class Preference(val key: Int) {
 
     var leftIcon: Drawable? = null
     var rightIcon: Drawable? = null
@@ -14,11 +14,8 @@ abstract class BasicPreference(val key: String) {
 
     var isClickable = true
 
-    abstract fun getLayoutId(): Int
+    open fun getLayoutId(): Int = R.layout.cardview_preference_title
 }
 
-class TitlePreference(key: String): AlertPreference(key)  {
 
-    override fun getLayoutId(): Int = R.layout.cardview_preference_title
-}
 

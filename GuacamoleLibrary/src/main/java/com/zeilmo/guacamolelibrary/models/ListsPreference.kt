@@ -2,7 +2,7 @@ package com.zeilmo.guacamolelibrary.models
 
 import com.zeilmo.guacamolelibrary.R
 
-class SingleListPreference(key: String): AlertPreference(key)  {
+class SingleListPreference(key: Int): AlertPreference(key)  {
 
     var itemList = arrayOf<String>()
     var selectedItem: Int = 0
@@ -14,7 +14,7 @@ class SingleListPreference(key: String): AlertPreference(key)  {
     override fun getLayoutId(): Int = R.layout.cardview_preference_single_list
 }
 
-class MultiListPreference(key: String): AlertPreference(key)  {
+class MultiListPreference(key: Int): AlertPreference(key)  {
 
     var itemList = hashMapOf<String, Boolean>()
 
